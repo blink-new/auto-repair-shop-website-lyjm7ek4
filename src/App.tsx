@@ -10,7 +10,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { useToast } from './hooks/use-toast'
 import { Toaster } from './components/ui/toaster'
 import { AdminWrapper } from './components/AdminWrapper'
-import { PaymentGate } from './components/PaymentGate'
 import { submitContactRequest, submitAppointmentRequest } from './services/requests'
 import type { ContactFormData, AppointmentFormData } from './types/requests'
 import { 
@@ -37,7 +36,7 @@ function App() {
   const [isBookingOpen, setIsBookingOpen] = useState(false)
   const [showAdmin, setShowAdmin] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isPaid, setIsPaid] = useState(false)
+
   const { toast } = useToast()
 
   // États pour les formulaires
@@ -186,11 +185,6 @@ function App() {
 
   if (showAdmin) {
     return <AdminWrapper />
-  }
-
-  // Show payment gate if not paid
-  if (!isPaid) {
-    return <PaymentGate onPaymentComplete={() => setIsPaid(true)} />
   }
 
   return (
